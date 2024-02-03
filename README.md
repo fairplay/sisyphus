@@ -1,6 +1,7 @@
 # Sisyphus
 
-Toy stack concatenative language implemented in AWK
+Toy stack concatenative language implemented in AWK.
+
 Named because of "pushing", get it?
 
 ## What is it?
