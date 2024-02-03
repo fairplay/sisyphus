@@ -78,7 +78,7 @@ There are several primitives well known by the similar stack-based or concatenat
 | pull                     | Pulls element from the quoted stack | [ [ x ] y z ] pull => [ x ] [ y z ]  |
 | lookup                   | Looks in dictionary for definition  | See below                            |
 | i                        | Interprets quoted stack or atom     | 5 [ dup * 1 + ] i  => 26             |
-| ``                       | Do not interpret the next atom      | 1 2 `` over => 1 2 over              |
+| `                        | Do not interpret the next atom      | 1 2 ` over => 1 2 over               |
 | :                        | Define new words                    | See below                            |
 
 
