@@ -24,7 +24,7 @@ a b c [ 2 3 ] 3push [ a b c 2 3 ] TEST
 
 5 iota 1 [ * ] fold 120 TEST
 2 5 range [ 3^ ] map [ 8 27 64 125 ] TEST
-10 iota [ dup 2 % 0 eq? ] filter [ 2 4 6 8 10 ] TEST
+10 iota [ 2 % 0 eq? ] filter [ 2 4 6 8 10 ] TEST
 
 1 [ 2 * ] 5 repeat 32 TEST
 

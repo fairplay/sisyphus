@@ -47,7 +47,7 @@
     [ swap pull swap rot dup rot swap i -rot map push ]
   ifte ]
 
-: filter ( stack f -- stack ) [ [ ] [ pop _ ] [ ifte ] 3push map ]
+: filter ( stack f -- stack ) [ ' dup swap push [ ] [ pop _ ] [ ifte ] 3push map ]
 
 \ Loop
 : repeat ( f n -- something ) [
