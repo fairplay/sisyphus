@@ -3,18 +3,18 @@
 
 [ a ] [ b ] cat [ [ a ] i b ] TEST
 
-[ 1 2 ] empty? ` False TEST
-[ ] empty? ` True TEST
+[ 1 2 ] empty? ' False TEST
+[ ] empty? ' True TEST
 
 a b [ 2 3 ] 2push [ a b 2 3 ] TEST
 a b c [ 2 3 ] 3push [ a b c 2 3 ] TEST
 
-` False not ` True TEST
-` True ` False and ` False TEST
-` False ` True or ` True TEST
+' False not ' True TEST
+' True ' False and ' False TEST
+' False ' True or ' True TEST
 
-[ ` False ] [ 123 ] [ 456 ] ifte 456 TEST
-[ ` True ] [ 123 ] [ 456 ] ifte 123 TEST
+[ ' False ] [ 123 ] [ 456 ] ifte 456 TEST
+[ ' True ] [ 123 ] [ 456 ] ifte 123 TEST
 
 4 6 range [ 4 5 6 ] TEST
 5 iota [ 1 2 3 4 5 ] TEST

@@ -1,10 +1,10 @@
 ( "stack*" is the result of "stack" execution )
 
 \ Helper functions
-: " ( a -- [ a ] ) [ [ ] push ] \ rrr
+: " ( a -- [ a ] ) [ [ ] push ]
 : -rot ( a b c -- c a b ) [ rot rot ]
 : tuck ( a b -- b a b ) [ swap over ]
-: cat ( a stack -- [ a i stack ] ) [ ` i swap push push ]
+: cat ( a stack -- [ a i stack ] ) [ ' i swap push push ]
 : dip ( a stack -- stack* a ) [ swap [ ] push cat ]
 : empty? ( stack -- bool ) [ [ ] eq? ]
 : 2push [ push push ]
@@ -14,7 +14,7 @@
 : True ( a b -- a ) [ pop ]
 : False ( a b -- b ) [ swap pop ]
 : and ( bool bool -- bool ) [ dup i ]
-: not ( bool -- bool ) [ [ ` False ` True ] dip i ]
+: not ( bool -- bool ) [ [ ' False ' True ] dip i ]
 : or ( bool bool -- bool ) [ dup not i ]
 
 \ if ... then ... else ...

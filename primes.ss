@@ -4,6 +4,6 @@
   pull swap pop empty?
 ]
 
-17 prime? ` True TEST
-24 prime? ` False TEST
+17 prime? ' True TEST
+24 prime? ' False TEST
 2 10 range [ [ dup prime? ] [ ] [ pop _ ] ifte ] map [ 2 3 5 7 ] TEST

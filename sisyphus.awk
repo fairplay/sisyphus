@@ -312,7 +312,7 @@ function interpret(token,    tokens, token_orig) {
   else if (token ~ /^(\+|\-|\*|\/|%|eq\?|ne\?|lt\?|gt\?|le\?|ge\?)$/) {
     operation(token)
   }
-  else if (token == "`") {
+  else if (token == "'") {
     Mode = QUOTE
   }
   else if (token == ":") {
