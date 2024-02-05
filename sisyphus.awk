@@ -264,7 +264,7 @@ function compile(token) {
   if (Level < 0)
     error_syntax_error("unbalanced square brackets")
 
-  if (!Quotation)
+  if (Quotation == "")
     Quotation = token
   else
     Quotation = Quotation " " token
@@ -274,7 +274,7 @@ function compile(token) {
       add(Quotation)
       Mode = INTERPRET
     } else {
-      if (!Defined) {
+      if (Defined == "") {
         Defined = Quotation
       }
       else {
