@@ -130,11 +130,6 @@ function push(    st, x) {
     error_type_mismatch(st, "Stack", "push")
   }
 
-  if (x == FAIL) {
-    add(st)
-    return
-  }
-
   sub(/^\[/, "", st)
   add("[ " x "" st)
 }
@@ -190,22 +185,22 @@ function operation(op,    y, x) {
   else if (op == "%") {
     add(x % y)
   }
-  else if (op == "gt?") {
+  else if (op == ">") {
     x > y ? add(TRUE) : add(FALSE)
   }
-  else if (op == "ge?") {
+  else if (op == ">=") {
     x >= y ? add(TRUE) : add(FALSE)
   }
-  else if (op == "lt?") {
+  else if (op == "<") {
     x < y ? add(TRUE) : add(FALSE)
   }
-  else if (op == "le?") {
+  else if (op == "<=") {
     x <= y ? add(TRUE) : add(FALSE)
   }
-  else if (op == "eq?") {
+  else if (op == "==") {
     x == y ? add(TRUE) : add(FALSE)
   }
-  else if (op == "ne?") {
+  else if (op == "<>") {
     x != y ? add(TRUE) : add(FALSE)
   }
 }
@@ -228,6 +223,15 @@ function execute(    x) {
   else {
     put_token(x)
   }
+}
+
+function stackize(    s) {
+  s = ""
+  while (Top > 0) {
+    s = pop() " " s
+  }
+
+  add("[ " s "]")
 }
 
 function define(defined, definition,    k) {
@@ -309,7 +313,7 @@ function interpret(token,    tokens, token_orig) {
   else if (token == "rot") {
     rot()
   }
-  else if (token ~ /^(\+|\-|\*|\/|%|eq\?|ne\?|lt\?|gt\?|le\?|ge\?)$/) {
+  else if (token ~ /^(\+|\-|\*|\/|%|==|<>|<|>|<=|>=)$/) {
     operation(token)
   }
   else if (token == "'") {
@@ -329,6 +333,9 @@ function interpret(token,    tokens, token_orig) {
   }
   else if (token == "lookup") {
     lookup()
+  }
+  else if (token == "stack") {
+    stackize()
   }
   else if (token in Dict) {
     put_tokens(Dict[token])

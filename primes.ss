@@ -1,7 +1,7 @@
 : prime? [
   dup 1+ 2 / i 1 swap range swap [ swap % ] push map
-  [ [ 0 eq? ] [ 1 ] [ _ ] ifte ] map
-  pull swap pop empty?
+  [ [ 0? ] [ 1 ] [ _ ] ifte ] map
+  pull swap pop []?
 ]
 
 17 prime? ' True TEST
