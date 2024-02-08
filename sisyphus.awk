@@ -185,10 +185,10 @@ function operation(op,    y, x) {
     add(x * y)
   }
   else if (op == "/") {
-    add(int(x / y))
+    add(x / y)
   }
   else if (op == "%") {
-    add(int(x % y))
+    add(x % y)
   }
   else if (op == "gt?") {
     x > y ? add(TRUE) : add(FALSE)
@@ -383,9 +383,6 @@ function interpret(token,    tokens, token_orig) {
 END {
   if (Level != 0)
     error_syntax_error("unbalanced square brackets")
-
-  if (IN_COMMENT)
-    error_syntax_error("loose '('")
 
   print ""
   stack_show()
