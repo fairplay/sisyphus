@@ -1,18 +1,23 @@
 ( "stack*" is the result of "stack" execution )
 
 \ Helper functions
-: quote ( a -- [ a ] ) [ [ ] push ]
-: -rot ( a b c -- c a b ) [ rot rot ]
-: tuck ( a b -- b a b ) [ swap over ]
-: cat ( a stack -- [ a i stack ] ) [ ' i swap push push ]
-: dip ( a stack -- stack* a ) [ swap [ ] push cat ]
 : []? ( stack -- bool ) [ [ ] == ]
 : 0? ( n -- bool ) [ 0 == ]
 : _? ( a -- bool ) [ _ == ]
 : ?push [ [ over _? ] [ swap pop ] [ push ] ifte ]
 : push2 [ push push ]
 : push3 [ push push push ]
+: pull2 [ pull pull ]
+: pull3 [ pull pull pull ]
+: pop2 [ pop pop ]
+: pop3 [ pop pop pop ]
 : 2dup [ over over ]
+: 2swap [ [ ] push2 -rot [ ] push2 swap pull2 pop rot pull2 pop ]
+: quote ( a -- [ a ] ) [ [ ] push ]
+: -rot ( a b c -- c a b ) [ rot rot ]
+: tuck ( a b -- b a b ) [ swap over ]
+: cat ( a stack -- [ a i stack ] ) [ ' i swap push2 ]
+: dip ( a stack -- stack* a ) [ swap [ ] push cat ]
 
 \ Church booleans and logic
 : True ( a b -- a ) [ pop ]
@@ -22,8 +27,8 @@
 : or ( bool bool -- bool ) [ dup not i ]
 
 \ if ... then ... else ...
-: ifte ( cond-stack stack stack -- stack* ) [ [ ] push push cat i rot i i ]
-: TEST [ [ 2dup == ] [ pop pop ] [ _ i ] ifte ]
+: ifte ( cond-stack stack stack -- stack* ) [ [ ] push2 cat i rot i i ]
+: TEST [ [ 2dup == ] [ pop2 ] [ _ i ] ifte ]
 
 \ Math shortcuts
 : 1+ [ 1 + ]
@@ -41,8 +46,8 @@
 \ High-order functions (combinators)
 : fold ( stack accum f -- accum ) [
   [ rot dup []? ]
-    [ pop pop ]
-    [ pull rot tuck [ ] push push cat i rot swap fold ]
+    [ pop2 ]
+    [ pull rot tuck [ ] push2 cat i rot swap fold ]
   ifte ]
 
 : map ( stack f -- stack ) [
@@ -56,6 +61,11 @@
 \ Loop
 : repeat ( f n -- something ) [
   [ dup 0? ]
-    [ pop pop ]
+    [ pop2 ]
     [ rot rot tuck i swap rot 1- repeat ]
   ifte ]
+
+: repeat-till-empty ( f [ A ] -- something ) [
+  [ push ] push map
+  [ ] [ cat ] fold i ]
+

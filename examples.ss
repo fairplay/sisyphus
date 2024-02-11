@@ -1,5 +1,5 @@
 : gcd [ [ 2dup == ] [ pop ] [ [ 2dup < ] [ ] [ swap ] ifte over - gcd ] ifte ]
-: fact [ swap 1+ dup rot * [ fact ] push push ]
+: fact [ swap 1+ dup rot * [ fact ] push2 ]
 
 [ 0 1 fact ] [ ] [ [ i ] cat ] 6 repeat i [ 6 720 fact ] TEST
 5 15 gcd 5 TEST

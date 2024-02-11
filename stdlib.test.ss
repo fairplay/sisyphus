@@ -6,6 +6,8 @@ a b c [ 2 3 ] push3 [ a b c 2 3 ] TEST
 1 2 3 -rot quote push2 [ 3 1 2 ] TEST
 1 2 tuck quote push2 [ 2 1 2 ] TEST
 
+1 2 3 4 2swap quote push3 [ 3 4 1 2 ] TEST
+
 [ a ] [ b ] cat [ [ a ] i b ] TEST
 
 [ 1 2 ] []? ' False TEST
