@@ -1,7 +1,6 @@
 ( "stack*" is the result of "stack" execution )
 
 \ Helper functions
-: " ( a -- [ a ] ) [ [ ] push ]
 : -rot ( a b c -- c a b ) [ rot rot ]
 : tuck ( a b -- b a b ) [ swap over ]
 : cat ( a stack -- [ a i stack ] ) [ ' i swap push push ]
@@ -9,6 +8,10 @@
 : empty? ( stack -- bool ) [ [ ] eq? ]
 : 2push [ push push ]
 : 3push [ push push push ]
+: fence [ [ ] push ]
+: 2fence [ [ ] 2push ]
+: 3fence [ [ ] 3push ]
+: 2dup [ over over ]
 
 \ Church booleans and logic
 : True ( a b -- a ) [ pop ]
@@ -18,8 +21,11 @@
 : or ( bool bool -- bool ) [ dup not i ]
 
 \ if ... then ... else ...
-: ifte ( cond-stack stack stack -- stack* ) [ [ ] push push cat i rot i i ]
+: ifte ( cond-stack stack stack -- stack* ) [ 2fence cat i rot i i ]
 : TEST [ [ eq? ] [ ] [ _ i ] ifte ]
+: when ( cond then -- then* ) [ ' pop swap push [ ] ifte ]
+: ? [ ' dup swap ' eq? 3fence ]
+
 
 \ Math shortcuts
 : 1+ [ 1 + ]

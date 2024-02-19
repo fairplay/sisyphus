@@ -122,6 +122,15 @@ function rot(    x, y, z) {
   add(z)
 }
 
+function typeof(    x) {
+  x = pop()
+  if (x ~ /^\[.+\]$/) {
+    add("list")
+  } else {
+    add("atom")
+  }
+}
+
 function push(    st, x) {
   st = pop()
   x = pop()
@@ -326,6 +335,9 @@ function interpret(token,    tokens, token_orig) {
   }
   else if (token == "pull") {
     pull()
+  }
+  else if (token == "typeof") {
+    typeof()
   }
   else if (token == "lookup") {
     lookup()

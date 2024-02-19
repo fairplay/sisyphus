@@ -1,5 +1,5 @@
-1 2 3 -rot " 2push [ 3 1 2 ] TEST
-1 2 tuck " 2push [ 2 1 2 ] TEST
+1 2 3 -rot 3fence [ 3 1 2 ] TEST
+1 2 tuck 3fence [ 2 1 2 ] TEST
 
 [ a ] [ b ] cat [ [ a ] i b ] TEST
 
@@ -15,6 +15,10 @@ a b c [ 2 3 ] 3push [ a b c 2 3 ] TEST
 
 [ ' False ] [ 123 ] [ 456 ] ifte 456 TEST
 [ ' True ] [ 123 ] [ 456 ] ifte 123 TEST
+
+3 [ dup 4 gt? ] [ 100 ] when [ dup 2 gt? ] [ 500 ] when 500 TEST
+
+3 3 ? [ 100 ] when 2 ? [ 500 ] when 100 TEST
 
 4 6 range [ 4 5 6 ] TEST
 5 iota [ 1 2 3 4 5 ] TEST
